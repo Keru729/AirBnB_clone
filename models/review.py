@@ -1,18 +1,18 @@
 #!/usr/bin/python3
+"""
+Review class, a subclass of BaseModel class
+"""
 from models.base_model import BaseModel
-from models.place import Place
-from models.user import User
-"""
-Module class: Review
-"""
 
 
 class Review(BaseModel):
-    """definition for class Review"""
-    text = ""
+    """
+    A subclass of BaseModel class
+    Public class attributes:
+        place_id:            (str) will be Place.id
+        user_id:             (str) will be User.id
+        text:                (str)
+    """
     place_id = ""
     user_id = ""
-
-    def __init__(self, *args, **kwargs):
-        """ constructor method """
-        super().__init__(self, *args, **kwargs)
+    text = ""

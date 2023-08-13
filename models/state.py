@@ -1,14 +1,14 @@
 #!/usr/bin/python3
+"""
+State class, a subclass of BaseModel
+"""
 from models.base_model import BaseModel
-"""
-Module class: State
-"""
 
 
 class State(BaseModel):
-    """definition for class State"""
+    """
+    A subclass of BaseModel class
+    Public class attribute:
+        name: (str)
+    """
     name = ""
-
-    def __init__(self, *args, **kwargs):
-        """ constructor method """
-        super().__init__(self, *args, **kwargs)

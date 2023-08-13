@@ -1,69 +1,60 @@
 #!/usr/bin/python3
-import os.path
+'''AirBnB clone project File Storage'''
 import json
-import os
-"""
-Module file_storage
-Contains a class FileStorage
-that serializes instances to a JSON file and
-deserializes JSON file to instances
-"""
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
-class FileStorage():
+class FileStorage:
+    """ This is a storage engine for AirBnB clone project
+    Class Methods:
+        all: Returns the object
+        new: updates the dictionary id
+        save: Serializes, or converts Python objects into JSON strings
+        reload: Deserializes, or converts JSON strings into Python objects.
+    Class Attributes:
+        __file_path (str): The name of the file to save objects to.
+        __objects (dict): A dictionary of instantiated objects.
+        class_dict (dict): A dictionary of all the classes.
     """
-    that serializes instances to a JSON file and deserializes JSON file
-    """
-    ''' initializing values '''
-    __file_path = "file.json"
+
+    __file_path = 'file.json'
     __objects = {}
+    class_dict = {"BaseModel": BaseModel, "User": User, "Place": Place,
+                  "Amenity": Amenity, "City": City, "Review": Review,
+                  "State": State}
 
     def all(self):
-        ''' returns the dictionary __objects '''
+        '''Return dictionary of <class>.<id> : object instance'''
         return self.__objects
 
     def new(self, obj):
-        ''' sets in __objects the obj with key <obj class name>.id '''
+        '''Set new __objects to existing dictionary of instances'''
         if obj:
-            ''' adds the object and the key to __objects if the obj exists '''
-            name = "{}.{}".format(obj.__class__.__name__, obj.id)
-            self.__objects[name] = obj
+            key = '{}.{}'.format(obj.__class__.__name__, obj.id)
+            self.__objects[key] = obj
 
     def save(self):
-        ''' serializes __objects to the JSON file (path: __file_path) '''
-        my_dict = {}
+        """Save/serialize obj dictionaries to json file"""
+        obj_dict = {}
 
-        for keys, val in self.__objects.items():
-            ''' serialize each object using the key '''
-            my_dict[keys] = val.to_dict()
-
-        with open(self.__file_path, "w") as my_file:
-            json.dump(my_dict, my_file)
+        for key, obj in self.__objects.items():
+            obj_dict[key] = obj.to_dict()
+        with open(self.__file_path, 'w', encoding="UTF-8") as f:
+            json.dump(obj_dict, f)
 
     def reload(self):
-        ''' deserializes/loads the JSON file to __objects '''
-
-        from models.base_model import BaseModel
-        from models.user import User
-        from models.state import State
-        from models.city import City
-        from models.amenity import Amenity
-        from models.place import Place
-        from models.review import Review
-        my_dict = {
-            "BaseModel": BaseModel,
-            "User": User,
-            "State": State,
-            "City": City,
-            "Amenity": Amenity,
-            "Place": Place,
-            "Review": Review
-            }
-        if not os.path.isfile(self.__file_path):
-            return
-        with open(self.__file_path, "r") as file_path:
-            objects = json.load(file_path)
-            self.__objects = {}
-            for key in objects:
-                name = key.split(".")[0]
-                self.__objects[key] = my_dict[name](**objects[key])
+        """Deserialize/convert obj dicts back to instances, if it exists"""
+        try:
+            with open(self.__file_path, 'r', encoding="UTF-8") as f:
+                new_obj_dict = json.load(f)
+            for key, value in new_obj_dict.items():
+                obj = self.class_dict[value['__class__']](**value)
+                self.__objects[key] = obj
+        except FileNotFoundError:
+            pass

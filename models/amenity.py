@@ -1,14 +1,14 @@
 #!/usr/bin/python3
+"""
+Amenity class, a subclass of BaseModel
+"""
 from models.base_model import BaseModel
-"""
-Module class: Amenity
-"""
 
 
 class Amenity(BaseModel):
-    """definition for class Amenity"""
+    """
+    A subclass of BaseModel class
+    Public class attribute:
+        name: (str)
+    """
     name = ""
-
-    def __init__(self, *args, **kwargs):
-        """ constructor method """
-        super().__init__(self, *args, **kwargs)

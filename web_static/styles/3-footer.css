@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * === Footer style ===
  */
@@ -13,4 +14,15 @@ footer {
   justify-content: center;
   position: absolute;
   width: 100%;
+=======
+footer {
+    margin: auto auto 0 auto;
+    background-color: #FFFFFF;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #CCCCCC;
+>>>>>>> ccbd5db237af9800d8ff9d2ca74a56d5d2a18f1e
 }

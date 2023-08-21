@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * === Header style ===
  */
@@ -8,4 +9,14 @@ header {
   border-bottom: 1px solid #ccc;
   height: 70px;
   width: 100%;
+=======
+header {
+    background-color: #FFFFFF;
+    background-image: url("../images/HBTN_logo.png");
+    background-position: left-top;
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 100%;
+    border-bottom: 1px solid #CCCCCC;
+>>>>>>> ccbd5db237af9800d8ff9d2ca74a56d5d2a18f1e
 }

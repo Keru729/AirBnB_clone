@@ -1,3 +1,24 @@
+<<<<<<< HEAD
+/*
+ * === Global style ===
+ */
+
+/* Body style */
+body {
+  color: #484848;
+  font: 14px Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Container style */
+.container {
+  margin: 30px auto;
+  max-width: 1000px;
+}
+
+/* Strong style */
+strong {
+  font-weight: bold;
+=======
 body {
     display:flex;
     flex-direction: column;
@@ -16,4 +37,5 @@ body {
     margin-bottom: 30px;
     padding-text-align: center;
     padding-left:  10px;
+>>>>>>> ccbd5db237af9800d8ff9d2ca74a56d5d2a18f1e
 }
